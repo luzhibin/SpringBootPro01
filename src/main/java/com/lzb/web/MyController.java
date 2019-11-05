@@ -1,17 +1,24 @@
 package com.lzb.web;
 
-import org.springframework.stereotype.Controller;
+import com.alibaba.druid.pool.DruidDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.sql.DataSource;
 
 /**
  * Created by luzhibin on 2019/11/3 16:28
  */
-@Controller
+@RestController
 public class MyController {
+
+    @Autowired
+    private DataSource dataSource;
+
     @RequestMapping("/hello")
-    @ResponseBody
     public String hello(){
-        return "hello springboot";
+        System.out.println(dataSource);
+        return "Hello SpringBoot,First init";
     }
 }
